@@ -1,0 +1,12 @@
+.Die {
+  height: 5rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Die__img {
+  height: 3.2rem;
+  width: 3.2rem;
+}

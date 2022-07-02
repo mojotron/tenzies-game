@@ -1,10 +1,14 @@
-import images from "../images/images";
-console.log(images);
+import images from "../images/diceImages";
+import "../styles/Die.css";
 
 const Die = (props) => {
   return (
     <div className="Die">
-      <img src={images[`dice${props.value}${props.filled ? "filled" : ""}`]} />
+      <img
+        className="Die__img"
+        src={images[`dice${props.value}${props.filled ? "filled" : ""}`]}
+        alt={`die displaying number ${props.value}`}
+      />
     </div>
   );
 };
