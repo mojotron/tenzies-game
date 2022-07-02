@@ -1,8 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@400;600&display=swap");
 html {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 10px;
+}
+:root {
+  --black: #272727;
+  --gray: #747474;
+  --orange: #ff652f;
+  --yellow: #ffe400;
+  --blue: #14a76c;
 }
 *,
 *::after,
@@ -14,4 +22,5 @@ html {
 body {
   height: 100vh;
   width: 100vw;
+  background-color: var(--black);
 }
