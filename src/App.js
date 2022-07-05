@@ -3,6 +3,9 @@ import DiceGrid from "./components/DiceGrid";
 import { generateArray, generateRandomNumber } from "./helpers";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
+import "./styles/App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [diceArr, setDiceArr] = useState([]);
@@ -63,17 +66,20 @@ const App = () => {
   return (
     <div className="App">
       {gameOver && <Confetti />}
+      <Header />
       <DiceGrid dice={diceArr} holdDice={holdDice} />
 
       {gameOver ? (
-        <button type="button" onClick={newGame}>
+        <button className="btn" type="button" onClick={newGame}>
           New Game
         </button>
       ) : (
-        <button type="button" onClick={roll}>
+        <button className="btn" type="button" onClick={roll}>
           Roll
         </button>
       )}
+
+      <Footer />
     </div>
   );
 };

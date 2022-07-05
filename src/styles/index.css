@@ -7,10 +7,10 @@ html {
 }
 :root {
   --black: #272727;
-  --gray: #747474;
+  --gray: #b4b4b4;
   --orange: #ff652f;
   --yellow: #ffe400;
-  --blue: #14a76c;
+  --green: #14a76c;
 }
 *,
 *::after,
@@ -23,4 +23,26 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: var(--black);
+}
+#root {
+  display: flex;
+  justify-content: center;
+  padding: 5rem;
+}
+.btn {
+  font-family: "Bungee", "Poppins", sans-serif;
+  font-size: 1.6rem;
+  width: 15rem;
+  padding: 1.3rem 2.5rem;
+  background: none;
+  background-color: var(--yellow);
+  border-radius: 0.5rem;
+  border: none;
+  color: var(--black);
+  transition: background-color cubic-bezier(0.55, 0.055, 0.675, 0.19) 0.5s;
+  cursor: pointer;
+}
+.btn:hover,
+.btn:active {
+  background-color: var(--green);
 }

@@ -1,0 +1,14 @@
+.Footer {
+  margin-top: 5rem;
+}
+.Footer__info {
+  color: var(--gray);
+  font-size: 1.3rem;
+}
+.Footer__info__link {
+  color: var(--orange);
+}
+.Footer__info__link:hover,
+.Footer__info__link:active {
+  color: var(--green);
+}
