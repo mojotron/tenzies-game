@@ -46,3 +46,6 @@ body {
 .btn:active {
   background-color: var(--green);
 }
+.small {
+  transform: scale(0.5);
+}

@@ -6,11 +6,13 @@ import Confetti from "react-confetti";
 import DiceGrid from "./components/DiceGrid";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import LeaderBoard from "./components/LeaderBoard";
 
 const App = () => {
-  const [game, setGame] = useState({ gameRunning: false });
+  const [game, setGame] = useState({ gameOver: false, gameRunning: false });
   const [diceArr, setDiceArr] = useState([]);
   const [rolls, setRolls] = useState(0);
+  const [showLeaderBoard, setShowLeaderBoard] = useState(true);
 
   const generateNum1to6Inclusive = generateRandomNumber.bind(null, 1, 6);
 
@@ -32,6 +34,7 @@ const App = () => {
       endTime: null,
     });
     setDiceArr(crateNewDiceArr());
+    setShowLeaderBoard(false);
   };
 
   useEffect(() => {
@@ -47,6 +50,7 @@ const App = () => {
         gameOver: true,
         endTime: Date.now(),
       }));
+      setShowLeaderBoard(true);
     }
   }, [diceArr]);
 
@@ -71,9 +75,9 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* {game.gameOver && <Confetti />} */}
+      {game.gameOver && <Confetti />}
       <Header />
-      {game && <DiceGrid dice={diceArr} holdDice={holdDice} />}
+      <DiceGrid dice={diceArr} holdDice={holdDice} />
 
       {!game.gameRunning && (
         <button className="btn" type="button" onClick={initNewGame}>
@@ -86,6 +90,8 @@ const App = () => {
           Roll
         </button>
       )}
+
+      {showLeaderBoard && <LeaderBoard data={{ ...game, rolls }} />}
 
       <Footer />
     </div>
