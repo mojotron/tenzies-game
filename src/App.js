@@ -1,28 +1,38 @@
 import { useEffect, useState } from "react";
-import DiceGrid from "./components/DiceGrid";
-import { generateArray, generateRandomNumber } from "./helpers";
-import { nanoid } from "nanoid";
-import Confetti from "react-confetti";
 import "./styles/App.css";
+import { nanoid } from "nanoid";
+import { generateArray, generateRandomNumber } from "./helpers";
+import Confetti from "react-confetti";
+import DiceGrid from "./components/DiceGrid";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 const App = () => {
+  const [game, setGame] = useState({ gameRunning: false });
   const [diceArr, setDiceArr] = useState([]);
-  const [gameOver, setGameOver] = useState(false);
+  const [rolls, setRolls] = useState(0);
 
   const generateNum1to6Inclusive = generateRandomNumber.bind(null, 1, 6);
 
-  const crateNewDiceArr = () => {
-    const newDiceArr = generateArray(10, generateNum1to6Inclusive).map(
-      (num) => ({ id: nanoid(), value: num, isHold: false })
-    );
-    setDiceArr(newDiceArr);
-  };
+  const generateDie = (num) => ({ id: nanoid(), value: num, isHold: false });
 
-  useEffect(() => {
-    crateNewDiceArr();
-  }, []);
+  const crateNewDiceArr = () => {
+    return generateArray(10, generateNum1to6Inclusive).map((num) =>
+      generateDie(num)
+    );
+  };
+  console.log(game);
+  console.log(rolls);
+
+  const initNewGame = () => {
+    setGame({
+      gameRunning: true,
+      gameOver: false,
+      startTime: Date.now(),
+      endTime: null,
+    });
+    setDiceArr(crateNewDiceArr());
+  };
 
   useEffect(() => {
     if (diceArr.length < 1) return;
@@ -31,12 +41,17 @@ const App = () => {
       (die) => die.value === dieValue && die.isHold
     );
     if (gameWon) {
-      setGameOver(true);
-      console.log("Game OVER");
+      setGame((oldGame) => ({
+        ...oldGame,
+        gameRunning: false,
+        gameOver: true,
+        endTime: Date.now(),
+      }));
     }
   }, [diceArr]);
 
   const holdDice = (id) => {
+    // map over diceArr and change clicked die isHold flag
     setDiceArr((oldDiceArr) =>
       oldDiceArr.map((die) =>
         die.id === id ? { ...die, isHold: !die.isHold } : die
@@ -45,35 +60,28 @@ const App = () => {
   };
 
   const roll = () => {
-    setDiceArr((oldDiceArr) => {
-      return oldDiceArr.map((die) => {
-        if (!die.isHold)
-          return {
-            id: nanoid(),
-            value: generateNum1to6Inclusive(),
-            isHold: false,
-          };
-        return die;
-      });
-    });
-  };
-
-  const newGame = () => {
-    setGameOver(false);
-    crateNewDiceArr();
+    // map over diceArr and create new die for each die with isHold flag value of false
+    setDiceArr((oldDiceArr) =>
+      oldDiceArr.map((die) =>
+        !die.isHold ? generateDie(generateNum1to6Inclusive()) : die
+      )
+    );
+    setRolls((oldRolls) => oldRolls + 1);
   };
 
   return (
     <div className="App">
-      {gameOver && <Confetti />}
+      {/* {game.gameOver && <Confetti />} */}
       <Header />
-      <DiceGrid dice={diceArr} holdDice={holdDice} />
+      {game && <DiceGrid dice={diceArr} holdDice={holdDice} />}
 
-      {gameOver ? (
-        <button className="btn" type="button" onClick={newGame}>
+      {!game.gameRunning && (
+        <button className="btn" type="button" onClick={initNewGame}>
           New Game
         </button>
-      ) : (
+      )}
+
+      {game.gameRunning && (
         <button className="btn" type="button" onClick={roll}>
           Roll
         </button>
