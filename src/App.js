@@ -23,8 +23,7 @@ const App = () => {
       generateDie(num)
     );
   };
-  console.log(game);
-  console.log(rolls);
+  console.log("render");
 
   const initNewGame = () => {
     setGame({
@@ -35,6 +34,7 @@ const App = () => {
     });
     setDiceArr(crateNewDiceArr());
     setShowLeaderBoard(false);
+    setRolls(0);
   };
 
   useEffect(() => {

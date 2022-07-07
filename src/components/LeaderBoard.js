@@ -1,12 +1,13 @@
+import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 import "../styles/LeaderBoard.css";
 import AddScoreForm from "./AddScoreForm";
+import { formatTime } from "../helpers";
 
 const LeaderBoard = (props) => {
   const [highScores, setHighScores] = useState(
     JSON.parse(localStorage.getItem("tenzies-high-score")) || []
   );
-
   const [addScore, setAddScore] = useState(false);
 
   useEffect(() => {
@@ -21,23 +22,40 @@ const LeaderBoard = (props) => {
     // );
   }, []);
 
-  const updateHighScore = () => {};
-
+  const sortScores = (scoreArr) => {
+    return scoreArr.sort((a, b) => {
+      if (a.rolls > b.rolls) return 1;
+      if (a.rolls === b.rolls) {
+        if (a.time > b.time) return 1;
+        else return -1;
+      } else return -1;
+    });
+  };
   const addNewScore = (name) => {
     console.log(name);
     const newScore = {
+      id: nanoid(),
       name,
       rolls: props.data.rolls,
       time: props.data.endTime - props.data.startTime,
     };
-    console.log(newScore);
+    setHighScores((oldScores) => sortScores([...oldScores, newScore]));
   };
 
   useEffect(() => {
     localStorage.setItem("tenzies-high-score", JSON.stringify(highScores));
   }, [highScores]);
 
-  const scoreElements = highScores.map((score) => <li>{score.rolls}</li>);
+  const scoreElements = highScores.map((score, i) => (
+    <li
+      className={`LeaderBoard__list__item border-${
+        i % 2 === 0 ? "even" : "odd"
+      }`}
+      key={score.id}
+    >
+      {score.name} / {score.rolls} rolls / time {formatTime(score.time)}
+    </li>
+  ));
   return (
     <section className="LeaderBoard">
       <h2 className="LeaderBoard__heading">Leader Board</h2>

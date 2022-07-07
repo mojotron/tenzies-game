@@ -13,3 +13,29 @@
   color: var(--green);
   letter-spacing: 0.4rem;
 }
+.LeaderBoard__list {
+  list-style: none;
+  font-size: 1.5rem;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.LeaderBoard__list__item {
+  font-weight: 600;
+  padding: 1.5rem 2rem;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  width: 80%;
+  border-width: 3px;
+  border-style: solid;
+  color: var(--gray);
+}
+.border-even {
+  border-color: var(--orange);
+}
+.border-odd {
+  border-color: var(--yellow);
+}
