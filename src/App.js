@@ -23,7 +23,6 @@ const App = () => {
       generateDie(num)
     );
   };
-  console.log("render");
 
   const initNewGame = () => {
     setGame({

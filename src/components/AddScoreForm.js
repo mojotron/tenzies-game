@@ -15,6 +15,8 @@ const AddScoreForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        maxLength={10}
+        minLength={3}
         placeholder="name"
         name="name"
         value={name}

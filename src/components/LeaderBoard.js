@@ -9,17 +9,34 @@ const LeaderBoard = (props) => {
     JSON.parse(localStorage.getItem("tenzies-high-score")) || []
   );
   const [addScore, setAddScore] = useState(false);
+  const [betterScore, setBetterScore] = useState(null);
+  console.log(betterScore);
+
+  console.log("render leaderboard");
 
   useEffect(() => {
     if (!props.data.gameOver) return;
-    if (highScores.length < 10) {
+    if (highScores.length < 3) {
       setAddScore(true);
+      return;
     }
-    // const scoreToChange = highScores.find(
-    //   (score) =>
-    //     score.rolls === props.data.rolls &&
-    //     score.time > props.data.endTime - props.data.startTime
-    // );
+    const better = highScores.filter((score) => {
+      if (score.rolls > props.data.rolls) return true;
+      else if (
+        score.rolls === props.data.rolls &&
+        score.time > props.data.endTime - props.data.startTime
+      )
+        return true;
+      else return false;
+    });
+    if (better) {
+      // use score id
+      console.log("betterScore", better);
+      setBetterScore(better[better.length - 1].id);
+      setAddScore(true);
+      return;
+    }
+    return;
   }, []);
 
   const sortScores = (scoreArr) => {
@@ -31,6 +48,7 @@ const LeaderBoard = (props) => {
       } else return -1;
     });
   };
+
   const addNewScore = (name) => {
     console.log(name);
     const newScore = {
@@ -39,7 +57,18 @@ const LeaderBoard = (props) => {
       rolls: props.data.rolls,
       time: props.data.endTime - props.data.startTime,
     };
-    setHighScores((oldScores) => sortScores([...oldScores, newScore]));
+    if (betterScore !== null) {
+      setHighScores((oldScores) => {
+        const temp = oldScores.map((score) => {
+          return score.id === betterScore ? newScore : score;
+        });
+        return sortScores(temp);
+      });
+    } else {
+      setHighScores((oldScores) => sortScores([...oldScores, newScore]));
+    }
+    setAddScore(false);
+    setBetterScore(null);
   };
 
   useEffect(() => {
@@ -56,6 +85,7 @@ const LeaderBoard = (props) => {
       {score.name} / {score.rolls} rolls / time {formatTime(score.time)}
     </li>
   ));
+
   return (
     <section className="LeaderBoard">
       <h2 className="LeaderBoard__heading">Leader Board</h2>

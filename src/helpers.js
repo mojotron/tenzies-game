@@ -12,7 +12,6 @@ export const formatTime = (ms) => {
     minute: "numeric",
     second: "numeric",
   };
-
   const formatter = new Intl.DateTimeFormat("en", options);
   return formatter.format(ms);
 };
