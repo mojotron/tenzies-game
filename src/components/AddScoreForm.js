@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/AddScoreForm.css";
 
 const AddScoreForm = (props) => {
   const [name, setName] = useState("");
@@ -13,8 +14,9 @@ const AddScoreForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="AddScoreForm small">
       <input
+        className="AddScoreForm__input"
         maxLength={10}
         minLength={3}
         placeholder="name"
@@ -22,7 +24,7 @@ const AddScoreForm = (props) => {
         value={name}
         onChange={handleNameChange}
       />
-      <button className="btn small">Add score</button>
+      <button className="btn">Add score</button>
     </form>
   );
 };

@@ -7,6 +7,8 @@ export const generateArray = (length, cb) => {
   return Array.from({ length: length }, () => cb());
 };
 
+const createDiceArray = (length) => {};
+
 export const formatTime = (ms) => {
   const options = {
     minute: "numeric",

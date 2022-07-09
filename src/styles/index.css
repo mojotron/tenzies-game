@@ -27,7 +27,7 @@ body {
 #root {
   display: flex;
   justify-content: center;
-  padding: 5rem;
+  padding: 3rem;
 }
 .btn {
   font-family: "Bungee", "Poppins", sans-serif;
@@ -47,5 +47,10 @@ body {
   background-color: var(--green);
 }
 .small {
-  transform: scale(0.5);
+  transform: scale(0.75);
+}
+.overlay {
+  width: 100vh;
+  height: 100vw;
+  position: fixed;
 }

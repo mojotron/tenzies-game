@@ -12,6 +12,7 @@
   font-size: 2.2rem;
   color: var(--green);
   letter-spacing: 0.4rem;
+  margin-bottom: 1rem;
 }
 .LeaderBoard__list {
   list-style: none;

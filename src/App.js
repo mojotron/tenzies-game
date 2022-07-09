@@ -74,7 +74,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {game.gameOver && <Confetti />}
+      {game.gameOver && <Confetti height={document.body.scrollHeight} />}
       <Header />
       <DiceGrid dice={diceArr} holdDice={holdDice} />
 

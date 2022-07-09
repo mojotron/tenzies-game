@@ -1,0 +1,14 @@
+.AddScoreForm {
+  margin: 2rem 0;
+  display: flex;
+}
+.AddScoreForm__input {
+  border: none;
+  text-indent: 3rem;
+  border-radius: 0.5rem;
+  background: none;
+  background-color: var(--gray);
+  color: var(--black);
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+}

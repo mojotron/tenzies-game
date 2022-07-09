@@ -10,13 +10,10 @@ const LeaderBoard = (props) => {
   );
   const [addScore, setAddScore] = useState(false);
   const [betterScore, setBetterScore] = useState(null);
-  console.log(betterScore);
-
-  console.log("render leaderboard");
 
   useEffect(() => {
     if (!props.data.gameOver) return;
-    if (highScores.length < 3) {
+    if (highScores.length < 5) {
       setAddScore(true);
       return;
     }
@@ -29,9 +26,7 @@ const LeaderBoard = (props) => {
         return true;
       else return false;
     });
-    if (better) {
-      // use score id
-      console.log("betterScore", better);
+    if (better.length > 0) {
       setBetterScore(better[better.length - 1].id);
       setAddScore(true);
       return;
