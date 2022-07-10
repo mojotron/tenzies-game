@@ -5,11 +5,16 @@ Tutorial is used as general guide line, everything is build before watching vide
 
 ## What have I learned
 
-How sync diff state with use effect
+- How sync diff state with use effect.
+- Preloading and dynamic image rendering in react.
+- Move logic from components to separate modules for independent testing (remove tight coupling).
+- How to mock localStorage.
 
 ## How did I upgrade project
 
-Leader board by time and rolls
-Testing project
-Use svg images for dice
-Style app to match react confetti effect
+1. High score board, sorted by roll count and game time.
+2. Add unit test and majority of integration tests.
+3. Use svg images for dice.
+4. Add custom style (not from figma file that goes with project) to match react confetti effect
+
+Big thanks to [Bob Ziroll](https://twitter.com/bobziroll) for awesome teaching style, I learned a lot.
