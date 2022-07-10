@@ -1,24 +1,28 @@
-import { nanoid } from "nanoid";
+import uniqid from "uniqid";
 
 const GenerateDice = (min, max) => {
   // generate number
-  const generateRandomNumber = () => {
+  const _generateRandomNumber = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
-  // generate array
-  // create new object
-  const createDiceObject = () => {
+  // create die object
+  const _createDiceObject = () => {
     return {
-      id: nanoid(),
-      value: generateRandomNumber(),
+      id: uniqid(),
+      value: _generateRandomNumber(),
       isHold: false,
     };
   };
-
+  // create single die (public API)
   const createDie = () => {
-    return createDiceObject();
+    return _createDiceObject();
   };
-  return { createDie };
+  // generate array (public API)
+  const createDice = (arrLength) => {
+    return Array.from({ length: arrLength }, () => _createDiceObject());
+  };
+
+  return { createDie, createDice };
 };
 
 export default GenerateDice;

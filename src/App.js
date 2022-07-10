@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import "./styles/App.css";
-import { nanoid } from "nanoid";
-import { generateArray, generateRandomNumber } from "./helpers";
 import Confetti from "react-confetti";
 import DiceGrid from "./components/DiceGrid";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LeaderBoard from "./components/LeaderBoard";
+import GenerateDice from "./DiceGenerator";
 
 const App = () => {
   const [game, setGame] = useState({ gameOver: false, gameRunning: false });
@@ -14,15 +13,7 @@ const App = () => {
   const [rolls, setRolls] = useState(0);
   const [showLeaderBoard, setShowLeaderBoard] = useState(true);
 
-  const generateNum1to6Inclusive = generateRandomNumber.bind(null, 1, 6);
-
-  const generateDie = (num) => ({ id: nanoid(), value: num, isHold: false });
-
-  const crateNewDiceArr = () => {
-    return generateArray(10, generateNum1to6Inclusive).map((num) =>
-      generateDie(num)
-    );
-  };
+  const diceGenerator = GenerateDice(1, 6);
 
   const initNewGame = () => {
     setGame({
@@ -31,7 +22,7 @@ const App = () => {
       startTime: Date.now(),
       endTime: null,
     });
-    setDiceArr(crateNewDiceArr());
+    setDiceArr(diceGenerator.createDice(10));
     setShowLeaderBoard(false);
     setRolls(0);
   };
@@ -65,9 +56,7 @@ const App = () => {
   const roll = () => {
     // map over diceArr and create new die for each die with isHold flag value of false
     setDiceArr((oldDiceArr) =>
-      oldDiceArr.map((die) =>
-        !die.isHold ? generateDie(generateNum1to6Inclusive()) : die
-      )
+      oldDiceArr.map((die) => (!die.isHold ? diceGenerator.createDie() : die))
     );
     setRolls((oldRolls) => oldRolls + 1);
   };

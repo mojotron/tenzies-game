@@ -1,8 +1,8 @@
-import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 import "../styles/LeaderBoard.css";
 import AddScoreForm from "./AddScoreForm";
-import { formatTime } from "../helpers";
+import uniqid from "uniqid";
+import { formatTime, sortHighScore } from "../helpers";
 
 const LeaderBoard = (props) => {
   const [highScores, setHighScores] = useState(
@@ -34,20 +34,9 @@ const LeaderBoard = (props) => {
     return;
   }, []);
 
-  const sortScores = (scoreArr) => {
-    return scoreArr.sort((a, b) => {
-      if (a.rolls > b.rolls) return 1;
-      if (a.rolls === b.rolls) {
-        if (a.time > b.time) return 1;
-        else return -1;
-      } else return -1;
-    });
-  };
-
   const addNewScore = (name) => {
-    console.log(name);
     const newScore = {
-      id: nanoid(),
+      id: uniqid(),
       name,
       rolls: props.data.rolls,
       time: props.data.endTime - props.data.startTime,
@@ -57,10 +46,10 @@ const LeaderBoard = (props) => {
         const temp = oldScores.map((score) => {
           return score.id === betterScore ? newScore : score;
         });
-        return sortScores(temp);
+        return sortHighScore(temp);
       });
     } else {
-      setHighScores((oldScores) => sortScores([...oldScores, newScore]));
+      setHighScores((oldScores) => sortHighScore([...oldScores, newScore]));
     }
     setAddScore(false);
     setBetterScore(null);

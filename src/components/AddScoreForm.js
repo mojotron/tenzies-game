@@ -14,7 +14,11 @@ const AddScoreForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="AddScoreForm small">
+    <form
+      aria-label="form"
+      onSubmit={handleSubmit}
+      className="AddScoreForm small"
+    >
       <input
         className="AddScoreForm__input"
         maxLength={10}
