@@ -40,3 +40,9 @@
 .border-odd {
   border-color: var(--yellow);
 }
+@media (max-width: 400px) {
+  .LeaderBoard {
+    width: 35rem;
+    padding: 0;
+  }
+}

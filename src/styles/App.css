@@ -8,3 +8,8 @@
   align-items: center;
   padding: 5rem;
 }
+@media (max-width: 400px) {
+  .App {
+    width: 35rem;
+  }
+}

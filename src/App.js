@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import "./styles/App.css";
-import Confetti from "react-confetti";
 import DiceGrid from "./components/DiceGrid";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LeaderBoard from "./components/LeaderBoard";
 import GenerateDice from "./DiceGenerator";
 
+import ConfettiTracker from "./components/ConfettiTracker";
+
 const App = () => {
   const [game, setGame] = useState({ gameOver: false, gameRunning: false });
   const [diceArr, setDiceArr] = useState([]);
   const [rolls, setRolls] = useState(0);
   const [showLeaderBoard, setShowLeaderBoard] = useState(true);
+
+  // temp
 
   const diceGenerator = GenerateDice(1, 6);
 
@@ -63,7 +66,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {game.gameOver && <Confetti height={document.body.scrollHeight} />}
+      {game.gameOver && <ConfettiTracker />}
       <Header />
       <DiceGrid dice={diceArr} holdDice={holdDice} />
 

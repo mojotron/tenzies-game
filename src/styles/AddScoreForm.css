@@ -1,6 +1,7 @@
 .AddScoreForm {
   margin: 2rem 0;
   display: flex;
+  z-index: 100;
 }
 .AddScoreForm__input {
   border: none;
