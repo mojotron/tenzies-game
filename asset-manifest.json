@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/tenzies-game/static/css/main.55094444.css",
+    "main.js": "/tenzies-game/static/js/main.4a3ff639.js",
+    "static/js/787.030a1986.chunk.js": "/tenzies-game/static/js/787.030a1986.chunk.js",
+    "static/media/dice-6.svg": "/tenzies-game/static/media/dice-6.fc646b6c424ac305fc9293ee2bfb74d9.svg",
+    "static/media/dice-5.svg": "/tenzies-game/static/media/dice-5.f1e8032309ce298f20f1a82c08c0213e.svg",
+    "static/media/dice-4.svg": "/tenzies-game/static/media/dice-4.16d719ce3214d84793900e62e0b29bb1.svg",
+    "index.html": "/tenzies-game/index.html",
+    "static/media/dice-3.svg": "/tenzies-game/static/media/dice-3.5c1949a681062bc6b7471795c54e9f70.svg",
+    "static/media/dice-2.svg": "/tenzies-game/static/media/dice-2.872f674aef3e7004f9665482ec0b8547.svg",
+    "static/media/dice-6-filled.svg": "/tenzies-game/static/media/dice-6-filled.a75280dba94028e2643959e1fc904ca4.svg",
+    "static/media/dice-1.svg": "/tenzies-game/static/media/dice-1.118ce024c8a3f8ad26a938eb7f79c0df.svg",
+    "static/media/dice-5-filled.svg": "/tenzies-game/static/media/dice-5-filled.6550596ecc10c8ed99b9bf2de3fe23f6.svg",
+    "static/media/dice-4-filled.svg": "/tenzies-game/static/media/dice-4-filled.0fdd1a31bcaf68d9550a247a75cbf50c.svg",
+    "static/media/dice-3-filled.svg": "/tenzies-game/static/media/dice-3-filled.9c4e7d96cf858fc1cf4441b23f0f1f3c.svg",
+    "static/media/dice-2-filled.svg": "/tenzies-game/static/media/dice-2-filled.3cd02bb57d0da08af89d670a1a3ac75b.svg",
+    "static/media/dice-1-filled.svg": "/tenzies-game/static/media/dice-1-filled.00922d3440690dcbeaf285a3ba9c47bc.svg",
+    "main.55094444.css.map": "/tenzies-game/static/css/main.55094444.css.map",
+    "main.4a3ff639.js.map": "/tenzies-game/static/js/main.4a3ff639.js.map",
+    "787.030a1986.chunk.js.map": "/tenzies-game/static/js/787.030a1986.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.55094444.css",
+    "static/js/main.4a3ff639.js"
+  ]
+}
